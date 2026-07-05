@@ -1,0 +1,21 @@
+name: Deploy
+on:
+  push:
+    branches: [ main ]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: terraform
+    env:
+      TF_VAR_workspace_url: ${{ secrets.TF_VAR_workspace_url }}
+      TF_VAR_token: ${{ secrets.TF_VAR_token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform init
+      - run: terraform fmt -recursive -check
+      - run: terraform validate
+      - run: terraform plan
+      - run: terraform apply -auto-approve

@@ -1,0 +1,1 @@
+Configure TF_VAR_workspace_url and TF_VAR_token locally or as GitHub Secrets, then run deploy.ps1 or push to main.
