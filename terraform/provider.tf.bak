@@ -12,7 +12,7 @@ variable "catalog_name" {
   default = "engmetrics"
 }
 
-provider "databricks" {
+provider "databricks"  {
   host  = var.workspace_url
   token = var.token
 }
